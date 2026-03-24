@@ -1,6 +1,5 @@
 # SVD Applications in Computer Vision
 
-> **Course:** Computer Vision and Application Tutorial
 > **Topic:** Singular Value Decomposition (SVD) — Theory & Practice
 > **Update:** 2026-03-24
 
@@ -163,10 +162,3 @@ for p in pts_src:
 | Camera calibration             | $Ax = 0$ | Same as DLT                             |
 | PCA / Dimensionality reduction | —         | Singular vectors = principal directions |
 | Image compression              | —         | Keep top-$k$ singular values          |
-
----
-
-## References
-
-- Hartley & Zisserman, *Multiple View Geometry in Computer Vision*, Ch. 4
-- CMU 16-385 Computer Vision, Lecture Notes on Homography
