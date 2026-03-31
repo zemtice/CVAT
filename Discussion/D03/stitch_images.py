@@ -250,21 +250,31 @@ def main():
                         help="Lowe's ratio test threshold (default: 0.75).")
     parser.add_argument("--reproj", type=float, default=4.0,
                         help="RANSAC reprojection error threshold in pixels (default: 4.0).")
+    parser.add_argument("--demo",   action="store_true",
+                        help="Run with synthetic demo images.")
     parser.add_argument("--no-display", action="store_true",
                         help="Skip GUI windows; only save output files.")
     args = parser.parse_args()
 
     # ── Load images ──
-    if not args.left or not args.right:
-        print("[ERROR] Please provide --left and --right image paths, or use --demo.")
-        sys.exit(1)
-    img1 = cv2.imread(args.left)
-    img2 = cv2.imread(args.right)
+    if args.demo:
+        img1_file = 'demo_left.jpg'
+        img2_file = 'demo_right.jpg'
+        print("[INFO] Using synthetic images: demo_left.jpg and demo_right.jpg")
+    else:
+        if not args.left or not args.right:
+            print("[ERROR] Please provide --left and --right image paths, or use --demo.")
+            sys.exit(1)
+        img1_file = args.left
+        img2_file = args.right
+
+    img1 = cv2.imread(img1_file)
+    img2 = cv2.imread(img2_file)
     if img1 is None:
-        print(f"[ERROR] Could not read image: {args.left}")
+        print(f"[ERROR] Could not read image: {img1_file}")
         sys.exit(1)
     if img2 is None:
-        print(f"[ERROR] Could not read image: {args.right}")
+        print(f"[ERROR] Could not read image: {img2_file}")
         sys.exit(1)
 
     print(f"[INFO] Image 1 size: {img1.shape[1]}x{img1.shape[0]}")
