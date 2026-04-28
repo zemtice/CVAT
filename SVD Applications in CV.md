@@ -29,6 +29,8 @@ In practice, we often have more equations than unknowns (overdetermined system).
 
 ### Solution via SVD
 
+# 
+
 Using the **Moore-Penrose pseudoinverse**:
 
 $$
@@ -83,8 +85,9 @@ Many computer vision problems reduce to finding a non-trivial vector $x$ such th
 
 Examples:
 
-- **Homography estimation**
-- **Camera calibration**
+- **Homography estimation (find H)**
+- **Fundamental matrix estimation (find F)**
+- **Camera calibration (find P)**
 
 ### Solution via SVD (the "SVD trick")
 
@@ -155,10 +158,11 @@ for p in pts_src:
 
 ## 4. Summary Table
 
-| Problem                        | Form       | SVD Role                                |
-| ------------------------------ | ---------- | --------------------------------------- |
-| Least-squares fitting          | $Ax = b$ | Pseudoinverse$A^+ = V\Sigma^+ U^T$    |
-| Homography (DLT)               | $Ax = 0$ | $x$ = last row of $V^T$             |
+| Problem                        | Form     | SVD Role                                |
+| ------------------------------ | -------- | --------------------------------------- |
+| Least-squares fitting          | $Ax = b$ | Pseudoinverse $A^+ = V\Sigma^+ U^T$     |
+| Homography                     | $Ax = 0$ | DLT: $x$ = last row of $V^T$            |
+| Fundamental matrix             | $Ax = 0$ | Same as DLT                             |
 | Camera calibration             | $Ax = 0$ | Same as DLT                             |
-| PCA / Dimensionality reduction | —         | Singular vectors = principal directions |
-| Image compression              | —         | Keep top-$k$ singular values          |
+| PCA / Dimensionality reduction | —        | Singular vectors = principal directions |
+| Image compression              | —        | Keep top-$k$ singular values            |
